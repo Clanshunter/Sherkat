@@ -1,45 +1,123 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سایت شرکتی</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سایت شرکتی کامل</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
   <style>
+    :root {
+      --bg-color: #fff;
+      --text-color: #333;
+      --card-bg: #fdfdfd;
+      --border-color: #eee;
+      --btn-bg: #333;
+      --btn-text: #fff;
+      --highlight: #FFC107;
+    }
+    body.dark-mode {
+      --bg-color: #1f1f1f;
+      --text-color: #eee;
+      --card-bg: #2b2b2b;
+      --border-color: #444;
+      --btn-bg: #FFC107;
+      --btn-text: #000;
+    }
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Vazirmatn', sans-serif;
+      scroll-behavior: smooth;
     }
     body {
-      background-color: #fff;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       line-height: 1.8;
     }
     header {
-      background-color: #ffffff;
+      background-color: var(--bg-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 10%;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 999;
       flex-wrap: wrap;
     }
     .logo {
       font-weight: bold;
       font-size: 1.5rem;
-      color: #FFC107;
+      color: var(--highlight);
+    }
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    nav {
+      flex: 1;
     }
     nav ul {
       list-style: none;
       display: flex;
       gap: 25px;
+      justify-content: flex-end;
     }
     nav a {
       text-decoration: none;
-      color: #333;
+      color: var(--text-color);
       font-weight: 500;
+    }
+    nav a i {
+      margin-left: 5px;
+    }
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: var(--bg-color);
+        width: 100%;
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+      nav ul.active {
+        display: flex;
+      }
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin: 40px 0 30px;
+    }
+    .cards, .pricing-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .card, .pricing, .testimonial {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .card i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+    .card h3, .pricing h3 {
+      color: var(--highlight);
+      margin-bottom: 10px;
     }
     .hero {
       background-color: #FFEB66;
@@ -50,68 +128,24 @@
       font-size: 2.5rem;
       margin-bottom: 20px;
     }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
     .btn {
-      background-color: #333;
-      color: #fff;
+      background-color: var(--btn-bg);
+      color: var(--btn-text);
       padding: 12px 24px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-size: 1rem;
-      transition: 0.3s;
     }
-    .btn:hover {
-      background-color: #555;
-    }
-    section {
-      padding: 60px 10%;
-    }
-    .section-title {
+    .stats, footer {
+      background-color: var(--card-bg);
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 40px;
+      padding: 40px 10%;
     }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-    .card {
-      background-color: #fdfdfd;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: 0.3s;
-    }
-    .card:hover {
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    .card h3 {
-      margin-bottom: 15px;
-      color: #FFC107;
-    }
-    .pricing-table {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      text-align: center;
-    }
-    .pricing {
-      border: 1px solid #ddd;
-      padding: 30px;
-      border-radius: 12px;
-    }
-    .testimonial {
-      background-color: #f9f9f9;
-      border-left: 4px solid #FFC107;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
+    .counter {
+      font-size: 2.5rem;
+      color: var(--highlight);
+      font-weight: bold;
     }
     .contact-form {
       display: flex;
@@ -123,59 +157,31 @@
     .contact-form input,
     .contact-form textarea {
       padding: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid var(--border-color);
       border-radius: 8px;
       font-size: 1rem;
+      background-color: var(--card-bg);
+      color: var(--text-color);
     }
-    footer {
-      background-color: #f1f1f1;
-      text-align: center;
-      padding: 20px;
-      margin-top: 60px;
-      font-size: 0.9rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 10px;
-      }
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      .btn {
-        width: 100%;
-      }
-      .section-title {
-        font-size: 1.6rem;
-      }
-      .contact-form {
-        width: 100%;
-        padding: 0 10px;
-      }
+    .social-icons a {
+      color: var(--text-color);
+      margin: 0 10px;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">لوگوی شرکت</div>
+    <div class="nav-toggle" id="navToggle">☰</div>
     <nav>
-      <ul>
-        <li><a href="#services">خدمات</a></li>
-        <li><a href="#portfolio">نمونه کارها</a></li>
-        <li><a href="#pricing">تعرفه‌ها</a></li>
-        <li><a href="#testimonials">نظرات</a></li>
-        <li><a href="#contact">تماس با ما</a></li>
+      <ul id="navMenu">
+        <li><a href="#services"><i class="fas fa-cogs"></i>خدمات</a></li>
+        <li><a href="#portfolio"><i class="fas fa-briefcase"></i>نمونه کارها</a></li>
+        <li><a href="#pricing"><i class="fas fa-tags"></i>تعرفه‌ها</a></li>
+        <li><a href="#testimonials"><i class="fas fa-comment"></i>نظرات</a></li>
+        <li><a href="#contact"><i class="fas fa-envelope"></i>تماس با ما</a></li>
+        <li><span class="toggle-dark" id="toggle-dark"><i class="fas fa-moon"></i></span></li>
       </ul>
     </nav>
   </header>
@@ -189,89 +195,98 @@
   <section id="services">
     <h2 class="section-title">خدمات ما</h2>
     <div class="cards">
-      <div class="card">
-        <h3>طراحی وب‌سایت</h3>
-        <p>طراحی سایت‌های شرکتی، فروشگاهی و شخصی با رعایت اصول UI/UX</p>
-      </div>
-      <div class="card">
-        <h3>سئو و بهینه‌سازی</h3>
-        <p>افزایش رتبه در گوگل و جذب ترافیک هدفمند به سایت شما</p>
-      </div>
-      <div class="card">
-        <h3>مدیریت شبکه‌های اجتماعی</h3>
-        <p>تولید محتوا و افزایش تعامل در اینستاگرام، لینکدین و تلگرام</p>
-      </div>
-      <div class="card">
-        <h3>طراحی گرافیک</h3>
-        <p>طراحی لوگو، بنر، کارت ویزیت و هویت بصری برند</p>
-      </div>
+      <div class="card"><i class="fas fa-laptop-code"></i><h3>طراحی وب‌سایت</h3><p>سایت شرکتی، فروشگاهی، شخصی</p></div>
+      <div class="card"><i class="fas fa-chart-line"></i><h3>سئو</h3><p>افزایش رتبه گوگل</p></div>
+      <div class="card"><i class="fas fa-bullhorn"></i><h3>تبلیغات دیجیتال</h3><p>شبکه‌های اجتماعی، کمپین</p></div>
+      <div class="card"><i class="fas fa-paint-brush"></i><h3>طراحی گرافیک</h3><p>لوگو، بنر، برندینگ</p></div>
     </div>
   </section>
 
   <section id="portfolio">
     <h2 class="section-title">نمونه کارها</h2>
     <div class="cards">
-      <div class="card">
-        <h3>فروشگاه اینترنتی کالا</h3>
-        <p>طراحی فروشگاه با درگاه پرداخت و پنل مدیریت</p>
-      </div>
-      <div class="card">
-        <h3>سایت شرکتی خدماتی</h3>
-        <p>سایت معرفی خدمات با فرم تماس و وبلاگ</p>
-      </div>
-      <div class="card">
-        <h3>کمپین تبلیغات دیجیتال</h3>
-        <p>اجرای کمپین تبلیغاتی گوگل و شبکه‌های اجتماعی</p>
-      </div>
+      <div class="card"><h3>سایت فروشگاهی کالا</h3><p>با پنل و پرداخت آنلاین</p></div>
+      <div class="card"><h3>سایت شرکتی خدماتی</h3><p>معرفی خدمات و فرم تماس</p></div>
+      <div class="card"><h3>کمپین تبلیغاتی</h3><p>شبکه‌های اجتماعی + گوگل</p></div>
     </div>
   </section>
 
   <section id="pricing">
     <h2 class="section-title">تعرفه‌ها</h2>
     <div class="pricing-table">
-      <div class="pricing">
-        <h3>پایه</h3>
-        <p>۵ میلیون تومان</p>
-        <p>طراحی سایت شرکتی ساده</p>
-      </div>
-      <div class="pricing">
-        <h3>حرفه‌ای</h3>
-        <p>۱۰ میلیون تومان</p>
-        <p>فروشگاه اینترنتی با پرداخت آنلاین</p>
-      </div>
-      <div class="pricing">
-        <h3>اختصاصی</h3>
-        <p>تماس بگیرید</p>
-        <p>طراحی ویژه بر اساس نیاز کسب‌وکار</p>
-      </div>
+      <div class="pricing"><h3>پایه</h3><p>۵ میلیون تومان</p><p>سایت شرکتی ساده</p></div>
+      <div class="pricing"><h3>حرفه‌ای</h3><p>۱۰ میلیون تومان</p><p>سایت فروشگاهی</p></div>
+      <div class="pricing"><h3>اختصاصی</h3><p>تماس بگیرید</p><p>طراحی سفارشی</p></div>
     </div>
   </section>
 
   <section id="testimonials">
     <h2 class="section-title">نظرات مشتریان</h2>
-    <div class="testimonial">
-      <p>«واقعا از کیفیت کار تیم راضی بودم، طراحی عالی و پشتیبانی عالی‌تر!»</p>
-      <strong>محمد رضایی</strong>
-    </div>
-    <div class="testimonial">
-      <p>«همه چیز دقیق، به‌موقع و حرفه‌ای انجام شد. ممنونم از تیم خوبتون.»</p>
-      <strong>سارا احمدی</strong>
-    </div>
+    <div class="testimonial"><p>«واقعا حرفه‌ای و خوش‌قول!»</p><strong>محمدی</strong></div>
+    <div class="testimonial"><p>«طراحی بسیار زیبا و پشتیبانی عالی»</p><strong>فاطمی</strong></div>
+  </section>
+
+  <section id="stats" class="stats">
+    <h2>اعتماد شما افتخار ماست</h2>
+    <div class="counter" id="customer-count">0+</div>
   </section>
 
   <section id="contact">
     <h2 class="section-title">تماس با ما</h2>
-    <form class="contact-form">
-      <input type="text" placeholder="نام شما">
-      <input type="email" placeholder="ایمیل">
-      <input type="tel" placeholder="شماره تماس">
+    <form id="contact-form" class="contact-form">
+      <input type="text" placeholder="نام شما" required />
+      <input type="email" placeholder="ایمیل" required />
       <textarea rows="5" placeholder="پیام شما"></textarea>
-      <button class="btn">ارسال پیام</button>
+      <button class="btn" type="submit">ارسال پیام</button>
+      <div id="success-message" class="success-message"></div>
     </form>
   </section>
 
   <footer>
     <p>تمامی حقوق محفوظ است © شرکت شما</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="mailto:info@example.com"><i class="fas fa-envelope"></i></a>
+    </div>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const navToggle = document.getElementById("navToggle");
+      const navMenu = document.getElementById("navMenu");
+      navToggle.addEventListener("click", function () {
+        navMenu.classList.toggle("active");
+      });
+
+      const counter = document.getElementById("customer-count");
+      let count = 0;
+      const target = 250;
+      const interval = setInterval(() => {
+        count++;
+        counter.textContent = count + "+";
+        if (count >= target) clearInterval(interval);
+      }, 10);
+
+      const form = document.getElementById("contact-form");
+      const message = document.getElementById("success-message");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        message.textContent = "پیام شما با موفقیت ارسال شد!";
+        form.reset();
+      });
+
+      const toggle = document.getElementById("toggle-dark");
+      if (localStorage.getItem("dark-mode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+      toggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("dark-mode",
+          document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+      });
+    });
+  </script>
 </body>
 </html>
