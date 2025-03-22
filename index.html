@@ -2,10 +2,10 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>سایت شرکتی کامل</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
   <style>
     :root {
       --bg-color: #fff;
@@ -53,71 +53,20 @@
       font-size: 1.5rem;
       color: var(--highlight);
     }
-    .nav-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    nav {
-      flex: 1;
-    }
     nav ul {
       list-style: none;
       display: flex;
       gap: 25px;
-      justify-content: flex-end;
     }
     nav a {
       text-decoration: none;
       color: var(--text-color);
       font-weight: 500;
     }
-    nav a i {
-      margin-left: 5px;
-    }
-    @media (max-width: 768px) {
-      .nav-toggle {
-        display: block;
-      }
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background-color: var(--bg-color);
-        width: 100%;
-        margin-top: 15px;
-        padding: 10px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      }
-      nav ul.active {
-        display: flex;
-      }
-    }
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin: 40px 0 30px;
-    }
-    .cards, .pricing-table {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-    .card, .pricing, .testimonial {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
-    .card i {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: var(--text-color);
-    }
-    .card h3, .pricing h3 {
-      color: var(--highlight);
-      margin-bottom: 10px;
+    nav a i { margin-left: 5px; }
+    .toggle-dark {
+      cursor: pointer;
+      font-size: 1.2rem;
     }
     .hero {
       background-color: #FFEB66;
@@ -128,6 +77,10 @@
       font-size: 2.5rem;
       margin-bottom: 20px;
     }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
     .btn {
       background-color: var(--btn-bg);
       color: var(--btn-text);
@@ -136,16 +89,56 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 1rem;
+      transition: 0.3s;
     }
-    .stats, footer {
-      background-color: var(--card-bg);
+    .btn:hover { opacity: 0.9; }
+    section {
+      padding: 60px 10%;
+    }
+    .section-title {
       text-align: center;
-      padding: 40px 10%;
+      font-size: 2rem;
+      margin-bottom: 40px;
     }
-    .counter {
-      font-size: 2.5rem;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .card i {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: var(--text-color);
+    }
+    .card h3 {
       color: var(--highlight);
-      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .pricing-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+    .pricing {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      border-radius: 12px;
+    }
+    .testimonial {
+      background-color: var(--card-bg);
+      border-left: 4px solid var(--highlight);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
     }
     .contact-form {
       display: flex;
@@ -163,19 +156,44 @@
       background-color: var(--card-bg);
       color: var(--text-color);
     }
+    .contact-form .success-message {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .stats {
+      background-color: var(--card-bg);
+      text-align: center;
+      padding: 60px 10%;
+    }
+    .counter {
+      font-size: 2.5rem;
+      color: var(--highlight);
+      font-weight: bold;
+    }
+    footer {
+      background-color: var(--card-bg);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
     .social-icons a {
       color: var(--text-color);
       margin: 0 10px;
       font-size: 1.2rem;
+    }
+    @media (max-width: 768px) {
+      header { flex-direction: column; align-items: flex-start; }
+      nav ul { flex-direction: column; gap: 10px; }
+      .btn { width: 100%; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">لوگوی شرکت</div>
-    <div class="nav-toggle" id="navToggle">☰</div>
     <nav>
-      <ul id="navMenu">
+      <ul>
         <li><a href="#services"><i class="fas fa-cogs"></i>خدمات</a></li>
         <li><a href="#portfolio"><i class="fas fa-briefcase"></i>نمونه کارها</a></li>
         <li><a href="#pricing"><i class="fas fa-tags"></i>تعرفه‌ها</a></li>
@@ -254,12 +272,6 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const navToggle = document.getElementById("navToggle");
-      const navMenu = document.getElementById("navMenu");
-      navToggle.addEventListener("click", function () {
-        navMenu.classList.toggle("active");
-      });
-
       const counter = document.getElementById("customer-count");
       let count = 0;
       const target = 250;
