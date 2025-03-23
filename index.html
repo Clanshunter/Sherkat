@@ -2,10 +2,10 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>سایت شرکتی کامل</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
   <style>
     :root {
       --bg-color: #fff;
@@ -16,6 +16,7 @@
       --btn-text: #fff;
       --highlight: #FFC107;
     }
+
     body.dark-mode {
       --bg-color: #1f1f1f;
       --text-color: #eee;
@@ -24,6 +25,7 @@
       --btn-bg: #FFC107;
       --btn-text: #000;
     }
+
     * {
       margin: 0;
       padding: 0;
@@ -31,11 +33,13 @@
       font-family: 'Vazirmatn', sans-serif;
       scroll-behavior: smooth;
     }
+
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.8;
     }
+
     header {
       background-color: var(--bg-color);
       display: flex;
@@ -48,39 +52,57 @@
       z-index: 999;
       flex-wrap: wrap;
     }
+
     .logo {
       font-weight: bold;
       font-size: 1.5rem;
       color: var(--highlight);
     }
+
     nav ul {
       list-style: none;
       display: flex;
       gap: 25px;
+      align-items: center;
     }
+
     nav a {
       text-decoration: none;
       color: var(--text-color);
       font-weight: 500;
     }
-    nav a i { margin-left: 5px; }
+
+    nav a i {
+      margin-left: 5px;
+    }
+
     .toggle-dark {
       cursor: pointer;
       font-size: 1.2rem;
+      color: var(--text-color);
+      transition: transform 0.3s ease;
     }
+
+    .toggle-dark:hover {
+      transform: rotate(20deg);
+    }
+
     .hero {
       background-color: #FFEB66;
       padding: 80px 10%;
       text-align: center;
     }
+
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 20px;
     }
+
     .hero p {
       font-size: 1.2rem;
       margin-bottom: 30px;
     }
+
     .btn {
       background-color: var(--btn-bg);
       color: var(--btn-text);
@@ -91,48 +113,72 @@
       font-size: 1rem;
       transition: 0.3s;
     }
-    .btn:hover { opacity: 0.9; }
+
+    .btn:hover, .btn:focus-visible {
+      opacity: 0.9;
+      outline: none;
+    }
+
     section {
       padding: 60px 10%;
     }
+
     .section-title {
       text-align: center;
       font-size: 2rem;
       margin-bottom: 40px;
     }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
     }
+
     .card {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 20px;
       text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
     .card i {
       font-size: 2rem;
       margin-bottom: 15px;
       color: var(--text-color);
     }
+
     .card h3 {
       color: var(--highlight);
       margin-bottom: 10px;
     }
+
     .pricing-table {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
       text-align: center;
     }
+
     .pricing {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       padding: 30px;
       border-radius: 12px;
+      transition: box-shadow 0.3s;
     }
+
+    .pricing:hover {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
     .testimonial {
       background-color: var(--card-bg);
       border-left: 4px solid var(--highlight);
@@ -140,6 +186,7 @@
       margin-bottom: 20px;
       border-radius: 8px;
     }
+
     .contact-form {
       display: flex;
       flex-direction: column;
@@ -147,6 +194,7 @@
       max-width: 500px;
       margin: auto;
     }
+
     .contact-form input,
     .contact-form textarea {
       padding: 10px;
@@ -156,50 +204,76 @@
       background-color: var(--card-bg);
       color: var(--text-color);
     }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 2px solid var(--highlight);
+    }
+
     .contact-form .success-message {
       color: green;
       text-align: center;
       margin-top: 10px;
     }
+
     .stats {
       background-color: var(--card-bg);
       text-align: center;
       padding: 60px 10%;
     }
+
     .counter {
       font-size: 2.5rem;
       color: var(--highlight);
       font-weight: bold;
+      transition: 0.3s ease-in-out;
     }
+
     footer {
       background-color: var(--card-bg);
       text-align: center;
       padding: 20px;
       font-size: 0.9rem;
     }
+
     .social-icons a {
       color: var(--text-color);
       margin: 0 10px;
       font-size: 1.2rem;
     }
+
+    .social-icons a:hover {
+      color: var(--highlight);
+    }
+
     @media (max-width: 768px) {
-      header { flex-direction: column; align-items: flex-start; }
-      nav ul { flex-direction: column; gap: 10px; }
-      .btn { width: 100%; }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">لوگوی شرکت</div>
-    <nav>
+    <nav aria-label="منو اصلی">
       <ul>
         <li><a href="#services"><i class="fas fa-cogs"></i>خدمات</a></li>
         <li><a href="#portfolio"><i class="fas fa-briefcase"></i>نمونه کارها</a></li>
         <li><a href="#pricing"><i class="fas fa-tags"></i>تعرفه‌ها</a></li>
         <li><a href="#testimonials"><i class="fas fa-comment"></i>نظرات</a></li>
         <li><a href="#contact"><i class="fas fa-envelope"></i>تماس با ما</a></li>
-        <li><span class="toggle-dark" id="toggle-dark"><i class="fas fa-moon"></i></span></li>
+        <li><span class="toggle-dark" id="toggle-dark" title="تغییر حالت تیره"><i class="fas fa-moon"></i></span></li>
       </ul>
     </nav>
   </header>
@@ -213,19 +287,19 @@
   <section id="services">
     <h2 class="section-title">خدمات ما</h2>
     <div class="cards">
-      <div class="card"><i class="fas fa-laptop-code"></i><h3>طراحی وب‌سایت</h3><p>سایت شرکتی، فروشگاهی، شخصی</p></div>
-      <div class="card"><i class="fas fa-chart-line"></i><h3>سئو</h3><p>افزایش رتبه گوگل</p></div>
-      <div class="card"><i class="fas fa-bullhorn"></i><h3>تبلیغات دیجیتال</h3><p>شبکه‌های اجتماعی، کمپین</p></div>
-      <div class="card"><i class="fas fa-paint-brush"></i><h3>طراحی گرافیک</h3><p>لوگو، بنر، برندینگ</p></div>
+      <article class="card"><i class="fas fa-laptop-code"></i><h3>طراحی وب‌سایت</h3><p>سایت شرکتی، فروشگاهی، شخصی</p></article>
+      <article class="card"><i class="fas fa-chart-line"></i><h3>سئو</h3><p>افزایش رتبه گوگل</p></article>
+      <article class="card"><i class="fas fa-bullhorn"></i><h3>تبلیغات دیجیتال</h3><p>شبکه‌های اجتماعی، کمپین</p></article>
+      <article class="card"><i class="fas fa-paint-brush"></i><h3>طراحی گرافیک</h3><p>لوگو، بنر، برندینگ</p></article>
     </div>
   </section>
 
   <section id="portfolio">
     <h2 class="section-title">نمونه کارها</h2>
     <div class="cards">
-      <div class="card"><h3>سایت فروشگاهی کالا</h3><p>با پنل و پرداخت آنلاین</p></div>
-      <div class="card"><h3>سایت شرکتی خدماتی</h3><p>معرفی خدمات و فرم تماس</p></div>
-      <div class="card"><h3>کمپین تبلیغاتی</h3><p>شبکه‌های اجتماعی + گوگل</p></div>
+      <article class="card"><h3>سایت فروشگاهی کالا</h3><p>با پنل و پرداخت آنلاین</p></article>
+      <article class="card"><h3>سایت شرکتی خدماتی</h3><p>معرفی خدمات و فرم تماس</p></article>
+      <article class="card"><h3>کمپین تبلیغاتی</h3><p>شبکه‌های اجتماعی + گوگل</p></article>
     </div>
   </section>
 
@@ -240,8 +314,8 @@
 
   <section id="testimonials">
     <h2 class="section-title">نظرات مشتریان</h2>
-    <div class="testimonial"><p>«واقعا حرفه‌ای و خوش‌قول!»</p><strong>محمدی</strong></div>
-    <div class="testimonial"><p>«طراحی بسیار زیبا و پشتیبانی عالی»</p><strong>فاطمی</strong></div>
+    <blockquote class="testimonial"><p>«واقعا حرفه‌ای و خوش‌قول!»</p><strong>محمدی</strong></blockquote>
+    <blockquote class="testimonial"><p>«طراحی بسیار زیبا و پشتیبانی عالی»</p><strong>فاطمی</strong></blockquote>
   </section>
 
   <section id="stats" class="stats">
@@ -251,10 +325,10 @@
 
   <section id="contact">
     <h2 class="section-title">تماس با ما</h2>
-    <form id="contact-form" class="contact-form">
-      <input type="text" placeholder="نام شما" required />
-      <input type="email" placeholder="ایمیل" required />
-      <textarea rows="5" placeholder="پیام شما"></textarea>
+    <form id="contact-form" class="contact-form" aria-label="فرم تماس">
+      <input type="text" placeholder="نام شما" required aria-label="نام" />
+      <input type="email" placeholder="ایمیل" required aria-label="ایمیل" />
+      <textarea rows="5" placeholder="پیام شما" aria-label="پیام"></textarea>
       <button class="btn" type="submit">ارسال پیام</button>
       <div id="success-message" class="success-message"></div>
     </form>
@@ -262,11 +336,11 @@
 
   <footer>
     <p>تمامی حقوق محفوظ است © شرکت شما</p>
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
-      <a href="#"><i class="fab fa-whatsapp"></i></a>
-      <a href="mailto:info@example.com"><i class="fas fa-envelope"></i></a>
+    <div class="social-icons" aria-label="شبکه‌های اجتماعی">
+      <a href="#" aria-label="اینستاگرام"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="لینکدین"><i class="fab fa-linkedin"></i></a>
+      <a href="#" aria-label="واتساپ"><i class="fab fa-whatsapp"></i></a>
+      <a href="mailto:info@example.com" aria-label="ایمیل"><i class="fas fa-envelope"></i></a>
     </div>
   </footer>
 
@@ -275,11 +349,15 @@
       const counter = document.getElementById("customer-count");
       let count = 0;
       const target = 250;
+      const step = Math.ceil(target / 100);
       const interval = setInterval(() => {
-        count++;
+        count += step;
+        if (count >= target) {
+          count = target;
+          clearInterval(interval);
+        }
         counter.textContent = count + "+";
-        if (count >= target) clearInterval(interval);
-      }, 10);
+      }, 20);
 
       const form = document.getElementById("contact-form");
       const message = document.getElementById("success-message");
@@ -290,13 +368,22 @@
       });
 
       const toggle = document.getElementById("toggle-dark");
+      const icon = toggle.querySelector("i");
+
+      const updateIcon = () => {
+        icon.className = document.body.classList.contains("dark-mode") ? "fas fa-sun" : "fas fa-moon";
+      };
+
       if (localStorage.getItem("dark-mode") === "enabled") {
         document.body.classList.add("dark-mode");
+        updateIcon();
       }
+
       toggle.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
         localStorage.setItem("dark-mode",
           document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+        updateIcon();
       });
     });
   </script>
