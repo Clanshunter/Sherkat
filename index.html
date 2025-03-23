@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>سایت شرکتی کامل</title>
+  <title>سایت شرکتی حرفه‌ای</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
   <style>
@@ -31,6 +31,9 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Vazirmatn', sans-serif;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
@@ -38,6 +41,7 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.8;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     header {
@@ -70,6 +74,12 @@
       text-decoration: none;
       color: var(--text-color);
       font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a.active,
+    nav a:hover {
+      color: var(--highlight);
     }
 
     nav a i {
@@ -116,7 +126,8 @@
 
     .btn:hover, .btn:focus-visible {
       opacity: 0.9;
-      outline: none;
+      outline: 2px solid var(--highlight);
+      outline-offset: 2px;
     }
 
     section {
@@ -129,13 +140,13 @@
       margin-bottom: 40px;
     }
 
-    .cards {
+    .cards, .pricing-table {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
     }
 
-    .card {
+    .card, .pricing {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 12px;
@@ -144,7 +155,7 @@
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .card:hover {
+    .card:hover, .pricing:hover {
       transform: translateY(-5px);
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
@@ -158,25 +169,6 @@
     .card h3 {
       color: var(--highlight);
       margin-bottom: 10px;
-    }
-
-    .pricing-table {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      text-align: center;
-    }
-
-    .pricing {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      padding: 30px;
-      border-radius: 12px;
-      transition: box-shadow 0.3s;
-    }
-
-    .pricing:hover {
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .testimonial {
@@ -205,11 +197,6 @@
       color: var(--text-color);
     }
 
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      outline: 2px solid var(--highlight);
-    }
-
     .contact-form .success-message {
       color: green;
       text-align: center;
@@ -226,7 +213,6 @@
       font-size: 2.5rem;
       color: var(--highlight);
       font-weight: bold;
-      transition: 0.3s ease-in-out;
     }
 
     footer {
@@ -266,7 +252,7 @@
 <body>
   <header>
     <div class="logo">لوگوی شرکت</div>
-    <nav aria-label="منو اصلی">
+    <nav role="navigation" aria-label="منو اصلی">
       <ul>
         <li><a href="#services"><i class="fas fa-cogs"></i>خدمات</a></li>
         <li><a href="#portfolio"><i class="fas fa-briefcase"></i>نمونه کارها</a></li>
@@ -325,7 +311,7 @@
 
   <section id="contact">
     <h2 class="section-title">تماس با ما</h2>
-    <form id="contact-form" class="contact-form" aria-label="فرم تماس">
+    <form id="contact-form" class="contact-form" role="form" aria-label="فرم تماس">
       <input type="text" placeholder="نام شما" required aria-label="نام" />
       <input type="email" placeholder="ایمیل" required aria-label="ایمیل" />
       <textarea rows="5" placeholder="پیام شما" aria-label="پیام"></textarea>
@@ -346,19 +332,23 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // Animated Counter
       const counter = document.getElementById("customer-count");
-      let count = 0;
+      let current = 0;
       const target = 250;
-      const step = Math.ceil(target / 100);
-      const interval = setInterval(() => {
-        count += step;
-        if (count >= target) {
-          count = target;
-          clearInterval(interval);
-        }
-        counter.textContent = count + "+";
-      }, 20);
 
+      function animateCount() {
+        if (current < target) {
+          current += 5;
+          counter.textContent = current + "+";
+          requestAnimationFrame(animateCount);
+        } else {
+          counter.textContent = target + "+";
+        }
+      }
+      animateCount();
+
+      // Contact form
       const form = document.getElementById("contact-form");
       const message = document.getElementById("success-message");
       form.addEventListener("submit", function (e) {
@@ -367,6 +357,7 @@
         form.reset();
       });
 
+      // Dark mode toggle
       const toggle = document.getElementById("toggle-dark");
       const icon = toggle.querySelector("i");
 
@@ -384,6 +375,27 @@
         localStorage.setItem("dark-mode",
           document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
         updateIcon();
+      });
+
+      // Highlight active nav on scroll
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll("nav a");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
       });
     });
   </script>
